@@ -22,4 +22,4 @@ for i in range(nr_numbers):
 
 #shuffling password
 random.shuffle(password)
-print("".join(password))
+print(f"Your password is : {''.join(password)}")
