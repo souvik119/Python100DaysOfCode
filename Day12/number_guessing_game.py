@@ -6,6 +6,7 @@
 # hard has 5 guess attempts
 
 import random
+from art import logo
 
 def generate_target_number():
     """Returns a random integer between 1 and 100"""
@@ -23,6 +24,7 @@ def check_guess(target_number, guess_number):
 
 def gameplay():
     """Main gameplay function that controls the entire game"""
+    print(logo)
     target_number = generate_target_number()
     print("Welcome to the Number Guessing Game!")
     print("I am thinking of a number between 1 and 100.")
