@@ -13,13 +13,12 @@
 import os
 import random
 from game_data import data
+from art import logo, vs
 
 def print_gameplay(A, B):
     """Formats and prints gameplay message between A and B"""
-    os.system('cls' if os.name == 'nt' else 'clear')
-    #TODO : print logo here
     print(f"Compare A: {A['name']}, a {A['description']}, from {A['country']}.")
-    #TODO : print vs art here
+    print(vs)
     print(f"Against B: {B['name']}, a {B['description']}, from {B['country']}.")
 
 
@@ -42,16 +41,24 @@ def gameplay():
     A = random.choice(data)
     B = random.choice(data)
 
+    print(logo)
+    print_gameplay(A, B)
+    continue_game = compare_followers(A, B)
+
     while continue_game:
-        print_gameplay(A, B)
-        continue_game = compare_followers(A, B)
+        os.system('cls' if os.name == 'nt' else 'clear')
+        print(logo)
         if continue_game:
             A = B
             B = random.choice(data)
             score += 1
             print(f"You are right! Current Score: {score}")
         else:
-            print(f"Sorry that is wrong. Final Score: {score}")
+            break
+        print_gameplay(A, B)
+        continue_game = compare_followers(A, B)
+    
+    print(f"Sorry that is wrong. Final Score: {score}")
 
 
 gameplay()
