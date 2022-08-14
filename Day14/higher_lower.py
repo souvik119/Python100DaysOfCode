@@ -40,7 +40,8 @@ def gameplay():
     #randomly choose 2 items from list as A and B
     A = random.choice(data)
     B = random.choice(data)
-
+    if A == B:
+        B = random.choice(data)
     print(logo)
     print_gameplay(A, B)
     continue_game = compare_followers(A, B)
@@ -51,6 +52,8 @@ def gameplay():
         if continue_game:
             A = B
             B = random.choice(data)
+            if A == B:
+                B = random.choice(data)
             score += 1
             print(f"You are right! Current Score: {score}")
         else:
