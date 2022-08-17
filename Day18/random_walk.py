@@ -9,7 +9,7 @@ def random_color():
     red = random.randint(0,255)
     green = random.randint(0,255)
     blue = random.randint(0,255)
-    return red, green, blue
+    return (red, green, blue)
 
 
 def random_direction():
