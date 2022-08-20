@@ -28,6 +28,12 @@ def main():
         time.sleep(0.1)
         screen.update()
         ball.move()
+
+        #detect ball collision with top and bottom wall
+        if ball.ycor() > 280 or ball.ycor() < -280:
+            #need to bounce
+            ball.bounce()
+
     screen.exitonclick()
 
 
