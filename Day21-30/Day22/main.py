@@ -1,9 +1,12 @@
 from turtle import Screen
 from paddle import Paddle
+from ball import Ball
+import time
 
 screen = Screen()
 r_paddle = Paddle((350, 0))
 l_paddle = Paddle((-350, 0))
+ball = Ball()
 
 def screen_setup():
     screen.setup(width=800, height=600)
@@ -21,7 +24,10 @@ def main():
     screen_setup()
     game_is_on = True
     while game_is_on:
+        #for better ball visibility
+        time.sleep(0.1)
         screen.update()
+        ball.move()
     screen.exitonclick()
 
 
