@@ -1,12 +1,14 @@
 from turtle import Screen
 from paddle import Paddle
 from ball import Ball
+from scoreboard import Scoreboard
 import time
 
 screen = Screen()
 r_paddle = Paddle((350, 0))
 l_paddle = Paddle((-350, 0))
 ball = Ball()
+scoreboard = Scoreboard()
 
 def screen_setup():
     screen.setup(width=800, height=600)
@@ -25,7 +27,7 @@ def main():
     game_is_on = True
     while game_is_on:
         #for better ball visibility
-        time.sleep(0.1)
+        time.sleep(ball.move_speed)
         screen.update()
         ball.move()
 
@@ -42,10 +44,17 @@ def main():
         #detect right paddle misses the ball
         if ball.xcor() > 380:
             ball.reset_position()
+            scoreboard.l_point()
 
         #detect left paddle misses the ball
         if ball.xcor() < -380:
             ball.reset_position()
+            scoreboard.r_point()
+
+        #first to 5 points wins
+        if scoreboard.l_score == 5 or scoreboard.r_score == 5:
+            game_is_on = False
+            scoreboard.game_over()
 
 
     screen.exitonclick()
