@@ -25,7 +25,17 @@ def main():
         screen.update()
         carmanager.create_car()
         carmanager.move_cars()
-        
+
+        #detect collision with car
+        for car in carmanager.all_cars:
+            if car.distance(player) < 20:
+                game_is_on = False
+
+        #detect a successful crossing
+        if player.is_at_finish_line():
+            player.go_to_start()
+            carmanager.level_up()
+
     screen.exitonclick()
 
 main()
