@@ -6,6 +6,15 @@ FONT_NAME = "Courier"
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 
+def write_info_to_file():
+    website = website_entry_label.get()
+    username = username_entry_label.get()
+    password = password_entry_label.get()
+    with open("data.txt", mode="a") as f:
+        f.write(f"{website} | {username} | {password}\n")
+    website_entry_label.delete(0, END)
+    password_entry_label.delete(0, END)
+
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk()
 window.title("Password Manager")
@@ -26,6 +35,8 @@ website_text_label.grid(row=1, column=0)
 #website entry label
 website_entry_label = Entry(width=35)
 website_entry_label.grid(row=1, column=1, columnspan=2)
+#bring cursor to this entry box
+website_entry_label.focus()
 
 #username text label
 username_text_label = Label(text="Email/Username:", font=(FONT_NAME, 10, "bold"))
@@ -34,6 +45,8 @@ username_text_label.grid(row=2, column=0)
 #username entry label
 username_entry_label = Entry(width=35)
 username_entry_label.grid(row=2, column=1, columnspan=2)
+#use default email address as username
+username_entry_label.insert(0, "common@email.com")
 
 #password text label
 password_text_label = Label(text="Password:", font=(FONT_NAME, 10, "bold"))
@@ -48,7 +61,7 @@ generate_password_button = Button(text="Generate Password")
 generate_password_button.grid(row=3, column=2)
 
 #add button
-add_button = Button(text="Add", width=36)
+add_button = Button(text="Add", width=36, command=write_info_to_file)
 add_button.grid(row=4, column=1, columnspan=2)
 
 window.mainloop()
