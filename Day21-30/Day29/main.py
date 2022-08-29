@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox #this is not a class so had to import separately
 
 FONT_NAME = "Courier"
 
@@ -10,10 +11,17 @@ def write_info_to_file():
     website = website_entry_label.get()
     username = username_entry_label.get()
     password = password_entry_label.get()
-    with open("data.txt", mode="a") as f:
-        f.write(f"{website} | {username} | {password}\n")
-    website_entry_label.delete(0, END)
-    password_entry_label.delete(0, END)
+    #check if any field is empty
+    if len(website) == 0 or len(password) == 0:
+        messagebox.showinfo(title="Oops", message="Please make sure no field is empty!")
+    else:
+        #create a message box check if satisfied with the entered details
+        is_okay = messagebox.askokcancel(title=website, message=f"These are the details entered : \nEmail : {username}\nPassword: {password}\nIs it okay to save?")
+        if is_okay:
+            with open("data.txt", mode="a") as f:
+                f.write(f"{website} | {username} | {password}\n")
+            website_entry_label.delete(0, END)
+            password_entry_label.delete(0, END)
 
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk()
