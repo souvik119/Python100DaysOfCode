@@ -6,6 +6,23 @@ import json
 
 FONT_NAME = "Courier"
 
+# ---------------------------- SEARCH WEBSITE ------------------------------- #
+
+def find_password():
+    website = website_entry_label.get()
+    try:
+        with open("data.json", "r") as data_file:
+            data = json.load(data_file)
+            data_username = data[website]["email"]
+            data_password = data[website]["password"]
+    except FileNotFoundError:
+        messagebox.showinfo(title="Oops", message="No Data File Found!")
+    except KeyError:
+        messagebox.showinfo(title=f"{website}", message="No details for the website exists!")
+    else:
+        messagebox.showinfo(title=f"{website}", message=f"username: {data_username}\npassword: {data_password}")
+
+
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
 def password_gen():
@@ -78,17 +95,21 @@ website_text_label = Label(text="Website:", font=(FONT_NAME, 10, "bold"))
 website_text_label.grid(row=1, column=0)
 
 #website entry label
-website_entry_label = Entry(width=35)
-website_entry_label.grid(row=1, column=1, columnspan=2)
+website_entry_label = Entry(width=30)
+website_entry_label.grid(row=1, column=1)
 #bring cursor to this entry box
 website_entry_label.focus()
+
+#search button
+search_button = Button(text="Search", width=10, command=find_password)
+search_button.grid(row=1, column=2)
 
 #username text label
 username_text_label = Label(text="Email/Username:", font=(FONT_NAME, 10, "bold"))
 username_text_label.grid(row=2, column=0)
 
 #username entry label
-username_entry_label = Entry(width=35)
+username_entry_label = Entry(width=48)
 username_entry_label.grid(row=2, column=1, columnspan=2)
 #use default email address as username
 username_entry_label.insert(0, "common@email.com")
@@ -98,7 +119,7 @@ password_text_label = Label(text="Password:", font=(FONT_NAME, 10, "bold"))
 password_text_label.grid(row=3, column=0)
 
 #password entry label
-password_entry_label = Entry(width=21)
+password_entry_label = Entry(width=30)
 password_entry_label.grid(row=3, column=1)
 
 #generate password button
