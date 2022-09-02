@@ -1,5 +1,4 @@
 import smtplib
-from sqlite3 import connect
 
 my_email = ""
 password = ""
