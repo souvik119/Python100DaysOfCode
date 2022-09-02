@@ -20,6 +20,7 @@ def quote_list():
     return quotes
 
 def send_email(email_message):
+    """Sends email to sender based on message and other sender details provided"""
     with smtplib.SMTP(host="smtp.gmail.com", port=587) as connection:
         connection.starttls()
         connection.login(user=MY_EMAIL, password=MY_PASSWORD)
