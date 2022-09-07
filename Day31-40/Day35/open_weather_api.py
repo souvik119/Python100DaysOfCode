@@ -1,11 +1,12 @@
 import requests
 from twilio.rest import Client
+import os
 
-API_KEY = ""
+API_KEY = os.environ.get("OWM_API_KEY")
 MY_LAT = 51.507351
 MY_LONG = -0.127758
-ACCOUNT_SID = ""
-AUTH_TOKEN = ""
+ACCOUNT_SID = os.environ.get("TWILIO_SID")
+AUTH_TOKEN = os.environ.get("TWILIO_TOKEN")
 
 parameters = {
     "lat": MY_LAT,
@@ -31,7 +32,7 @@ if will_rain:
     message = client.messages \
     .create(
          body="Carry umbrella",
-         from_="",
-         to=""
+         from_="+17173668974",
+         to="+16194306455"
      )
     print(message.status)
