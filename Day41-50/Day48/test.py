@@ -1,6 +1,6 @@
 from selenium import webdriver
 
-chrome_driver_path = "C:/Users/sghosh/Documents/Python100DaysOfCode/drivers/chromedriver.exe"
+chrome_driver_path = "./drivers/chromedriver.exe"
 driver = webdriver.Chrome(executable_path=chrome_driver_path)
 
 # opens up a new browser window with the specified address
